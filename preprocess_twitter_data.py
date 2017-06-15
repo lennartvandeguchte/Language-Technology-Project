@@ -45,7 +45,7 @@ def tokenize(s):
  
  # Remove usernames, urls and punctuations. 
 def preprocess(s, lowercase=False):
-   # s = ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)"," ",s).split())
+    s = ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)"," ",s).split())
     tokens = tokenize(s)
     if lowercase:
         tokens = [token if emoticon_re.search(token) else token.lower() for token in tokens]
@@ -58,25 +58,15 @@ stop = stopwords.words('english') + punctuation + ['rt', 'via']
 
 count_all = Counter()
 terms_all = []
-for i in range(len(your_list)):  
+for i in range(len(your_list)): 
     # Delete stop words in tweets
     your_list[i][3] = [term for term in preprocess(your_list[i][3]) if term not in stop]
-    
     # Update the counter
     count_all.update(your_list[i][3])
-
-    # Create bigrams
-    
-    print(i)
-# Print the first 10 most frequent words
-print(count_all.most_common(10))
-
-
-# terms_bigram = bigrams(your_list[1][3])
-# print(your_list[:][3])
+    print('Preprocessed tweets:' i)
 
 
 
 with open('text_emotion_preprocessed.csv', 'w', newline='') as f:
     wr = csv.writer(f)
-    wr.writerows(your_list)
+    wr.writerows(your_list[1:])
