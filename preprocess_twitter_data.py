@@ -63,7 +63,7 @@ for i in range(len(your_list)):
     your_list[i][3] = [term for term in preprocess(your_list[i][3]) if term not in stop]
     # Update the counter
     count_all.update(your_list[i][3])
-    print('Preprocessed tweets:' i)
+    print('Preprocessed tweets:', i)
 
 
 
